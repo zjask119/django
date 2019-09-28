@@ -1,7 +1,9 @@
+
+{% extends 'index.html' %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
 
-{% extends 'index.html' %}
+
 {% block content %}
 <div class="panel panel-default">
     <div class="panel-heading">List of Movies</div>
@@ -10,8 +12,11 @@
     <div class="panel-body">
         <ul>
             {% for movie in movies %}
-            <li>{{ movie.name|upper }}</li>
-            <li>{{ movie.created_on|date:'Y-m-d' }}</li>
+            <li>{{ movie.name|upper }}
+            {{ movie.created_on|date:'Y-m-d' }}
+            <a href="{% url 'movie_delete' pk=movie.id %}"><b>Delete</b></a>
+                <a href="{% url 'movie_edit' pk=movie.id %}"><b>Edit</b></a>
+            </li>
             {% endfor %}
         </ul>
     </div>
